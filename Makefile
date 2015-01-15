@@ -41,7 +41,7 @@ TRASH = $(TESTS:%=test/%.s) $(TESTS:%=test/%) $(TESTS:%=test/%.res) $(TESTS:%=te
 test/%.s: $(RESULT) test/%.ml
 	./$(RESULT) test/$*
 test/%: test/%.s libmincaml.S stub.c
-	$(CC) $(CFLAGS) -m32 $^ -lm -o $@
+	$(CC) $(CFLAGS) $^ -lm -o $@
 test/%.res: test/%
 	$< > $@
 test/%.ans: test/%.ml
