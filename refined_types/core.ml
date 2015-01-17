@@ -56,12 +56,14 @@ open Infer
 			("plain_choose", "forall[a] (a, a) -> a");
 			("choose_curry", "forall[a] (x : a) -> (y : a) -> (z : a if z == x or z == y)");
 			("plain_choose_curry", "forall[a] a -> a -> a");
+
+                        ("print_int", "int -> unit");
 		]
 
 
 let env =
 	let f env (var_name, ty_str) =
-		let ty = Parser.ty_forall_eof Lexer.token (Lexing.from_string ty_str) in
+		let ty = Rparser.ty_forall_eof Rlexer.token (Lexing.from_string ty_str) in
 		let t_ty = infer_ty env 0 ty in
 		Env.extend var_name t_ty env
 	in

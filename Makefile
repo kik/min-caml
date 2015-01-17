@@ -8,6 +8,8 @@ NCSUFFIX = .opt
 CC = gcc
 CFLAGS = -g -O2 -Wall
 
+LIBS = unix
+
 default: debug-code top $(RESULT) do_test
 $(RESULT): debug-code top
 ## [自分（住井）用の注]
@@ -19,6 +21,14 @@ clean:: nobackup
 
 # ↓もし実装を改造したら、それに合わせて変える
 SOURCES = float.c type.ml id.ml m.ml s.ml \
+expr.ml \
+printing.ml \
+infer.ml \
+rparser.mly \
+rlexer.mll \
+core.ml \
+smt.ml \
+refined.ml \
 syntax.ml parser.mly lexer.mll typing.mli typing.ml kNormal.mli kNormal.ml \
 alpha.mli alpha.ml beta.mli beta.ml assoc.mli assoc.ml \
 inline.mli inline.ml constFold.mli constFold.ml elim.mli elim.ml \

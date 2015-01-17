@@ -4,3 +4,6 @@ cd shootout; ln -sf x64/Makefile .
 cd ../bytemark; ln -sf x64/Makefile .
 cd ../min-rt; ln -sf x64/globals.s .
 cd ..
+ln -s refined_types/{expr,printing,infer,core,smt,refined}.ml .
+ln -s refined_types/lexer.mll rlexer.mll
+ln -s refined_types/parser.mly rparser.mly
