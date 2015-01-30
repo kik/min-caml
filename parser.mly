@@ -49,6 +49,7 @@ let addtyp x = (x, Type.gentyp ())
 %right prec_unary_minus
 %left prec_app
 %left DOT
+%nonassoc BOOL INT FLOAT IDENT LPAREN
 
 /* 開始記号の定義 */
 %type <Syntax.t> exp
@@ -122,9 +123,10 @@ exp: /* 一般の式 (caml2html: parser_exp) */
 | exp actual_args
     %prec prec_app
     { App($1, $2) }
-| elems
+| elems %prec prec_let
     { Tuple($1) }
 | LET LPAREN pat RPAREN EQUAL exp IN exp
+    %prec prec_let
     { LetTuple($3, $6, $8) }
 | simple_exp DOT LPAREN exp RPAREN LESS_MINUS exp
     { Put($1, $4, $7) }
